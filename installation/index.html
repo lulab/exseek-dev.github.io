@@ -63,6 +63,21 @@
     <a class="current" href="./">Installation</a>
     <ul class="subnav">
             
+    <li class="toctree-l2"><a href="#installation">Installation</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#install-exseek">Install exSeek</a></li>
+        
+            <li><a class="toctree-l3" href="#install-required-software">Install required software</a></li>
+        
+            <li><a class="toctree-l3" href="#singularity">Singularity</a></li>
+        
+            <li><a class="toctree-l3" href="#build-pykent">Build Pykent</a></li>
+        
+        </ul>
+    
+
     </ul>
 	    </li>
           
@@ -88,7 +103,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../feature_selection.md">Feature Selection</a>
+    <a class="" href="../feature_selection/">Feature Selection</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -161,7 +176,113 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="installation">Installation</h1>
+<h2 id="install-exseek">Install exSeek</h2>
+<pre><code class="bash">git clone https://github.com/lulab/exSeek-dev.git
+</code></pre>
+
+<h2 id="install-required-software">Install required software</h2>
+<ul>
+<li>Python 3.6 (miniconda)</li>
+<li>Python 2.7 (miniconda)</li>
+<li>Java 8</li>
+<li>R 3.4 (https://mran.microsoft.com/download)</li>
+</ul>
+<h3 id="configure-conda-channels">Configure conda channels</h3>
+<pre><code class="bash">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/mro/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
+</code></pre>
+
+<h3 id="install-python-packages-using-conda">Install Python packages using conda</h3>
+<pre><code class="bash">conda install -y numpy scipy scikit-learn 
+conda install -y pandas matplotlib seaborn
+conda install -y tqdm snakemake h5py bokeh
+conda install -y umap jinja2
+pip install mlxtend 
+pip install flask Flask-AutoIndex
+</code></pre>
+
+<h3 id="install-bioconda-packages">Install Bioconda packages</h3>
+<p>List of all available Bioconda packages: (https://bioconda.github.io/recipes.html)</p>
+<pre><code class="bash">conda install -y bedtools samtools star subread bowtie2
+conda install -y rsem bamtools cutadapt picard gffread gffcompare
+conda install -y ucsc-bedtogenepred ucsc-genepredtogtf ucsc-bedgraphtobigwig ucsc-bigwigtobedgraph
+conda install -y htseq fastx_toolkit biopython rpy2
+conda install -y flexbar
+</code></pre>
+
+<h3 id="install-ubuntu-packages">Install Ubuntu packages</h3>
+<pre><code class="bash">sudo apt-get install -y gzip pigz openjdk-8-jdk libgraphviz-dev uuid-dev zlib1g-dev libpng-dev gawk
+</code></pre>
+
+<h3 id="install-r-packages">Install R packages</h3>
+<p>Install by running the following code in an R interactive session:</p>
+<pre><code class="R">options(&quot;repos&quot; = c(CRAN=&quot;https://mirrors.tuna.tsinghua.edu.cn/CRAN/&quot;))
+options(BioC_mirror=&quot;https://mirrors.tuna.tsinghua.edu.cn/bioconductor&quot;)
+# From CRAN
+install.packages(c('devtools', 'sva', 'VGAM', 'argparse', 'magrittr', 'readr', 'mvoutlier', 
+    'ggpubr', 'fastqr'))
+# From Bioconductor
+source('https://bioconductor.org/biocLite.R')
+biocLite(c('SingleCellExperiment', 'scater', 'scran', 'SCnorm',
+    'EDASeq', 'RUVSeq', 'DESeq2', 'edgeR', 'sva', 'apeglm'))
+# From R-forge
+install.packages('countreg', repos = c('http://R-Forge.R-project.org', 'https://mirrors.tuna.tsinghua.edu.cn/CRAN/'), dep = TRUE)
+# From GitHub
+library(devtools)
+install_github('ChenMengjie/VIPER')
+install_github('kassambara/easyGgplot2')
+install_github(&quot;Vivianstats/scImpute&quot;)
+install_github(&quot;hemberg-lab/scRNA.seq.funcs&quot;)
+</code></pre>
+
+<h3 id="other-packages">Other packages</h3>
+<ul>
+<li><a href="https://github.com/marvin-jens/find_circ">find_circ 1.2</a> (depends on Python 2.7)</li>
+<li><a href="http://www.genemine.org/codes/GTFtools_0.6.5.zip">GTFTools</a> (depends on Python)</li>
+<li><a href="http://prinseq.sourceforge.net/">Prinseq</a> (requires Perl)</li>
+</ul>
+<h2 id="singularity">Singularity</h2>
+<h3 id="build-image">Build image</h3>
+<pre><code class="bash">singularity build singularity/exseek.img singularity/Singularity
+</code></pre>
+
+<h3 id="make-wrappers-for-singularity-executables">Make wrappers for singularity executables</h3>
+<pre><code class="bash">bin/make_singularity_wrappers.py \
+    --image ~/singularity/simg/exseek.simg \
+    --list-file singularity/exports.txt \
+    --singularity-path $(which singularity) \
+    -o ~/singularity/wrappers/exseek
+</code></pre>
+
+<h3 id="add-wrappers-to-path">Add wrappers to PATH</h3>
+<pre><code class="bash">export PATH=&quot;$HOME/singularity/wrappers/exseek:$PATH&quot;
+</code></pre>
+
+<h2 id="build-pykent">Build Pykent</h2>
+<pre><code class="bash">wget -O tools/ucsc-tools.tar.gz http://hgdownload.soe.ucsc.edu/admin/exe/userApps.src.tgz
+tar -C tools -zxf tools/ucsc-tools.tar.gz
+(cd tools/userApps/kent/src/htslib/
+    CFLAGS=&quot;-fPIC -DUCSC_CRAM=0 -DKNETFILE_HOOKS=1&quot; ./configure
+    make
+)
+(cd tools/userApps/kent/src/lib/
+echo '
+%.o: %.c
+        ${CC} -fPIC ${COPT} ${CFLAGS} ${HG_DEFS} ${LOWELAB_DEFS} ${HG_WARN} ${HG_INC} ${XINC} -o $@ -c $&lt;
+
+$(MACHTYPE)/libjkweb.so: $(O) $(MACHTYPE)
+    gcc -fPIC -shared -o $(MACHTYPE)/libjkweb.so $(O) -Wl,-z,defs -L../htslib -lhts -lm -lz -lpthread -lpng -lcrypto -lssl -luuid
+' &gt; makefile
+make x86_64/libjkweb.so
+)
+cp tools/userApps/kent/src/lib/x86_64/libjkweb.so lib/
+</code></pre>
               
             </div>
           </div>
