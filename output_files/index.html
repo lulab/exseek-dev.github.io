@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Output files - exseek</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Output files";
+    var mkdocs_page_input_path = "output_files.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> exseek</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../get_started/">Get Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../genome_and_annotatins.md">Genome and Annotations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../small_rna_pipeline.md">Small RNA-seq mapping</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../long_rna_pipeline.md">Long RNA-seq mapping</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../matrix_processing/">Matrix processing</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../feature_selection.md">Feature Selection</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cluster_configuration/">Run on a cluster</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configuration/">Configuration File Reference</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Utilities</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../quality_control/">Quality Control</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../adapter_removal/">Adapter Removal</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../bigwig/">Generate BigWig Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../igv_browser/">IGV Browser</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../FAQ/">Frequently Asked Questions</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">exseek</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Output files</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="small-rna-mapping">Small RNA mapping</h2>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Descrpition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>snakemake/sequential_mapping.snakemake</code></td>
+<td>Snakefile for sequential mapping. Required by snakemake/mapping_small.snakemake</td>
+</tr>
+<tr>
+<td><code>${output_dir}/cutadapt/${sample_id}.fastq</code></td>
+<td>Reads with adaptor trimmed</td>
+</tr>
+<tr>
+<td><code>${output_dir}/tbam/${sample_id}/${rna_type}.bam</code></td>
+<td>BAM files in transcript coordinates</td>
+</tr>
+<tr>
+<td><code>${output_dir}/gbam/${sample_id}/${rna_type}.bam</code></td>
+<td>BAM files in genome coordinates</td>
+</tr>
+<tr>
+<td><code>${output_dir}/unmapped/${sample_id}/${rna_type}.fa.gz</code></td>
+<td>Unmapped reads in each step</td>
+</tr>
+<tr>
+<td><code>${output_dir}/fastqc/${sample_id}_fastqc.html</code></td>
+<td>FastQC report file</td>
+</tr>
+<tr>
+<td><code>${output_dir}/summary/fastqc.html</code></td>
+<td>Summary report for FastQC (HTML)</td>
+</tr>
+<tr>
+<td><code>${output_dir}/summary/fastqc.txt</code></td>
+<td>Summary table for FastQC</td>
+</tr>
+<tr>
+<td><code>${output_dir}/summary/fastqc.ipynb</code></td>
+<td>Summary report for FastQC (Jupyter notebook)</td>
+</tr>
+<tr>
+<td><code>${output_dir}/summary/read_counts.txt</code></td>
+<td>Summary table for read counts</td>
+</tr>
+<tr>
+<td><code>${output_dir}/stats/mapped_read_length_by_sample/${sample_id}</code></td>
+<td>Length distribution of mapped reads</td>
+</tr>
+</tbody>
+</table>
+<h2 id="long-rna-mapping">Long RNA mapping</h2>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Descrpition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${output_dir}/cutadapt/${sample_id}.fastq</code></td>
+<td>Reads with adaptor trimmed</td>
+</tr>
+<tr>
+<td><code>${output_dir}/bam/${sample_id}/rRNA.bam</code></td>
+<td>BAM files for reads mapped to rRNA</td>
+</tr>
+<tr>
+<td><code>${output_dir}/bam/${sample_id}/genome.bam</code></td>
+<td>BAM files for reads mapped to genome</td>
+</tr>
+<tr>
+<td><code>${output_dir}/bam/${sample_id}/remove_duplicates.bam</code></td>
+<td>BAM files for reads after removing duplicates</td>
+</tr>
+<tr>
+<td><code>${output_dir}/bam/${sample_id}/circRNA.bam</code></td>
+<td>BAM files for reads after removing duplicates</td>
+</tr>
+<tr>
+<td><code>${output_dir}/unmapped/${sample_id}/${map_step}_1.fa.gz</code></td>
+<td>Unmapped reads in each step</td>
+</tr>
+<tr>
+<td><code>${output_dir}/fastqc/${sample_id}_fastqc.html</code></td>
+<td>FastQC report file</td>
+</tr>
+<tr>
+<td><code>${output_dir}/summary/read_counts.txt</code></td>
+<td>Summary table for read counts</td>
+</tr>
+<tr>
+<td><code>${output_dir}/stats/mapped_read_length_by_sample/${sample_id}</code></td>
+<td>Length distribution of mapped reads</td>
+</tr>
+<tr>
+<td><code>${output_dir}/stats/mapped_insert_size_by_sample/${sample_id}</code></td>
+<td>Length distribution of mapped reads</td>
+</tr>
+</tbody>
+</table>
+<h2 id="count-matrix-small-rna-seq">Count matrix (small RNA-seq)</h2>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Descrpition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${output_dir}/count_matrix/transcript.txt</code></td>
+<td>Count matrix of transcripts</td>
+</tr>
+<tr>
+<td><code>${output_dir}/count_matrix/htseq.txt</code></td>
+<td>Count matrix of genes generated using HTSeq-count</td>
+</tr>
+<tr>
+<td><code>${output_dir}/count_matrix/featurecounts.txt</code></td>
+<td>Count matrix of genes generated using featureCounts</td>
+</tr>
+<tr>
+<td><code>${output_dir}/counts_by_biotype/${count_method}/${sample_id}/${rna_type}</code></td>
+<td>Gene/transcript counts generated using a feature counting tool</td>
+</tr>
+</tbody>
+</table>
+<h2 id="long-rna-domains">Long RNA domains</h2>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Descrpition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${output_dir}/domain_counts/${bin_size}/${pvalue}/${sample_id}.bed</code></td>
+<td>Read counts in long RNA domains (BED format with read counts in Column 5</td>
+</tr>
+<tr>
+<td><code>${output_dir}/count_matrix/domain_${pvalue}.txt</code></td>
+<td>Read count matrix of long RNA domains</td>
+</tr>
+<tr>
+<td><code>${output_dir}/domains/${bin_size}/${pvalue}.bed</code></td>
+<td>Long RNA domain locations</td>
+</tr>
+<tr>
+<td><code>${output_dir}/domains_recurrence/${bin_size}/${pvalue}.bed</code></td>
+<td>Recurrence of long RNA domains among samples (Column 5)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="matrix-processing">Matrix processing</h2>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${output_dir}/normalized_matrix/${normalization_method}.${imputation_method}.${batch_removal_method}.txt</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>${output_dir}/matrix_processing/normalization/${normalization_method}.txt</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>${output_dir}/matrix_processing/imputation/${normalization_method}.${imputation_method}.txt</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>${output_dir}/matrix_processing/batch_removal/${batch_removal_method}.${batch_index}.txt</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="differential-expression">Differential expression</h2>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${output_dir}/differential_expression/${count_method}/${compare_group}/${diffexp_method}.txt</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

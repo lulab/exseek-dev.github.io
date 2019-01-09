@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>IGV Browser - exseek</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "IGV Browser";
+    var mkdocs_page_input_path = "igv_browser.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> exseek</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../get_started/">Get Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../genome_and_annotatins.md">Genome and Annotations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../small_rna_pipeline.md">Small RNA-seq mapping</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../long_rna_pipeline.md">Long RNA-seq mapping</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../matrix_processing/">Matrix processing</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../feature_selection.md">Feature Selection</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cluster_configuration/">Run on a cluster</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configuration/">Configuration File Reference</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Utilities</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../quality_control/">Quality Control</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../adapter_removal/">Adapter Removal</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../bigwig/">Generate BigWig Files</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">IGV Browser</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#igv-genome-browser">IGV Genome Browser</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#templates">Templates</a></li>
+        
+            <li><a class="toctree-l4" href="#genome-reference-from-igv">Genome reference from IGV</a></li>
+        
+            <li><a class="toctree-l4" href="#generate-igv-html">Generate IGV html</a></li>
+        
+            <li><a class="toctree-l4" href="#igv-browser-reference">IGV Browser reference</a></li>
+        
+            <li><a class="toctree-l4" href="#track-configuration-reference">Track configuration reference</a></li>
+        
+            <li><a class="toctree-l4" href="#reference-tracks">Reference tracks</a></li>
+        
+            <li><a class="toctree-l4" href="#domains">Domains</a></li>
+        
+            <li><a class="toctree-l4" href="#custom-reference-genome">Custom reference genome</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../FAQ/">Frequently Asked Questions</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">exseek</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Utilities &raquo;</li>
+        
+      
+    
+    <li>IGV Browser</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="igv-genome-browser">IGV Genome Browser</h1>
+<h2 id="templates">Templates</h2>
+<pre><code class="bash">for d in img js css;do
+    [ -d &quot;templates/igv/$d&quot; ] || mkdir -p &quot;templates/igv/$d&quot;
+done
+wget -O templates/igv/img/favicon.ico 'https://igv.org/web/img/favicon.ico'
+wget -O templates/igv/js/igv.min.js 'https://igv.org/web/release/2.1.0/dist/igv.min.js'
+wget -O templates/igv/css/bootstrap.min.css 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
+wget -O templates/igv/js/bootstrap.min.js 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'
+wget -O templates/igv/js/jquery-3.2.1.slim.min.js 'https://code.jquery.com/jquery-3.2.1.slim.min.js'
+wget -O templates/igv/js/popper.min.js 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'
+</code></pre>
+
+<h2 id="genome-reference-from-igv">Genome reference from IGV</h2>
+<pre><code class="bash">wget -O genome/hg38/source/igv.hg38.genome http://s3.amazonaws.com/igv.broadinstitute.org/genomes/hg38.genome
+unzip genome/hg38/source/igv.hg38.genome -d genome/hg38/igv
+</code></pre>
+
+<h2 id="generate-igv-html">Generate IGV html</h2>
+<h2 id="igv-browser-reference">IGV Browser reference</h2>
+<h3 id="igvbrowser">igv.browser</h3>
+<p>addMultiLocusPanelWithGenomicStateAtIndex: ƒ (genomicState,index,viewportWidth)
+addTrack: ƒ (track)
+buildViewportsWithGenomicStateList: ƒ (genomicStateList)
+cancelTrackPan: ƒ ()
+compressedSession: ƒ ()
+dispose: ƒ ()
+emptyViewportContainers: ƒ ()
+endTrackDrag: ƒ ()
+findTracks: ƒ (property,value)
+fireEvent: ƒ (eventName,args,thisObj)
+getChromosomeLengthBP: ƒ (genome,referenceFrame)
+goto: ƒ (chrName,start,end)
+hideCenterGuide: ƒ ()
+hideCursorGuide: ƒ ()
+hideTrackLabels: ƒ ()
+isMultiLocusMode: ƒ ()
+isMultiLocusWholeGenomeView: ƒ ()
+loadGenome: ƒ (idOrConfig,initialLocus)
+loadInProgress: ƒ ()
+loadSampleInformation: ƒ (url)
+loadSession: ƒ (sessionURL,config)
+loadTrack: ƒ (config)
+loadTrackList: ƒ (configList)
+minimumBases: ƒ ()
+mouseDownOnViewport: ƒ (e,viewport)
+on: ƒ (eventName,fn)
+presentAlert: ƒ (alert,$parent,callback)
+presentMessageWithCallback: ƒ (message,callback)
+presentSplitScreenMultiLocusPanel: ƒ (alignment,genomicState)
+removeAllTracks: ƒ (removeSequence)
+removeMultiLocusPanelWithGenomicState: ƒ (genomicState,doResize)
+removeTrack: ƒ (track)
+removeTrackByName: ƒ (name)
+renderSVG: ƒ (config)
+reorderTracks: ƒ ()
+resize: ƒ ()
+search: ƒ (string,init)
+selectMultiLocusPanelWithGenomicState: ƒ (selectedGenomicState)
+sessionURL: ƒ ()
+setTrackHeight: ƒ (newHeight)
+setTrackLabelName: ƒ (trackView,name)
+showCenterGuide: ƒ ()
+showCursorGuide: ƒ ()
+showTrackLabels: ƒ ()
+startTrackDrag: ƒ (trackView)
+toJSON: ƒ ()
+un: ƒ (eventName,fn)
+updateLocusSearchWidget: ƒ (genomicState)
+updateTrackDrag: ƒ (dragDestination)
+updateUIWithGenomicStateListChange: ƒ (genomicStateList)
+updateViews: ƒ (genomicState,views)
+updateZoomSlider: ƒ ($slider)
+viewportContainerWidth: ƒ ()
+viewportWidth: ƒ ()
+visibilityChange: ƒ ()
+zoom: ƒ (scaleFactor)
+zoomIn: ƒ ()
+zoomOut: ƒ ()
+zoomWithRangePercentage: ƒ (percentage)
+zoomWithScaleFactor: ƒ (centerBPOrUndefined,viewportOrUndefined,scaleFactor)</p>
+<h3 id="file-extensions">File extensions</h3>
+<ul>
+<li>narrowpeak</li>
+<li>broadpeak</li>
+<li>peaks</li>
+<li>bedgraph</li>
+<li>wig</li>
+<li>gff3</li>
+<li>gff</li>
+<li>gtf</li>
+<li>fusionjuncspan</li>
+<li>refflat</li>
+<li>seg</li>
+<li>aed</li>
+<li>bed</li>
+<li>vcf</li>
+<li>bb</li>
+<li>bigbed</li>
+<li>bw</li>
+<li>bigwig</li>
+<li>bam</li>
+<li>tdf</li>
+<li>refgene</li>
+<li>genepred</li>
+<li>genepredext</li>
+<li>bedpe</li>
+<li>bp</li>
+<li>snp</li>
+<li>rmsk</li>
+</ul>
+<h2 id="track-configuration-reference">Track configuration reference</h2>
+<pre><code class="yaml">track1:
+    type: wig
+    format: bigwig
+    height: 200
+    min: 0
+    max: 100
+    color: 'rgb(0,0,0)'
+    autoScale: true,
+    logScale: false
+</code></pre>
+
+<pre><code class="bash">long_RNA:
+    url: genome/hg38/genePred/long_RNA.genePred
+    type: annotation
+    format: genepred
+    height: 200
+
+{
+    echo 'reference:
+    id: hg38
+    fastaURL: genome/hg38/fasta/genome.fa
+    indexURL: genome/hg38/fasta/genome.fa.fai
+    cytobandURL: genome/hg38/igv/cytoBandIdeo.txt
+Refseq Genes:
+    type: annotation
+    format: refGene
+    url: genome/hg38/igv/refGene.txt
+    visibilityWindow: 300000000
+    height: 80
+GENCODE_V27:
+    type: annotation
+    format: bed
+    url: genome/hg38/igv/gencode.bed
+    indexURL: genome/hg38/igv/gencode.bed.idx
+    displayMode: &quot;EXPANDED&quot;
+    searchable: true
+    visibilityWindow: 300000000
+    height: 200'
+    for sample_id in $(head -n 50 data/scirep/sample_ids.txt);do
+        printf &quot;${sample_id}(+):
+    url: scirep/${sample_id}.transcriptome.+.bigWig
+    type: wig
+    format: bigwig
+    height: 25
+${sample_id}(-):
+    url: scirep/${sample_id}.transcriptome.-.bigWig
+    type: wig
+    format: bigwig
+    height: 25
+&quot;
+    done
+} &gt; genome_browser/config/scirep.yaml
+bin/create_igv.py -i templates/igv/main.html -g hg38 \
+    --tracklist genome_browser/config/scirep.yaml \
+    --base-url http://166.111.156.12:10080/genomebrowse \
+    -o genome_browser/igv/scirep.html
+sync-bigwig
+</code></pre>
+
+<pre><code class="bash">bin/create_igv.py -i templates/igv/main.html -g hg38 --genome-dir genome/hg38/ \
+    --track genome/hg38/bed/long_RNA.intron.bed \
+    --track genome/hg38/bed/rmsk.bed \
+    --track genome/hg38/bed/promoter.merged.bed \
+    --track genome/hg38/bed/enhancer.merged.bed \
+    --track output/scirep/bigwig/Sample_1S1.genome.+.bigWig \
+    --track output/scirep/bigwig/Sample_1S1.genome.-.bigWig \
+    -o igv.html
+
+bin/create_igv.py -i templates/igv/main.html -g hg38 --genome-dir genome/hg38/ \
+    --tracklist tmp/tracklist.yaml \
+    -o igv.html
+--track output/scirep/bigwig/Sample_1S1.genome.+.bigWig -o igv.html
+
+</code></pre>
+
+<h2 id="reference-tracks">Reference tracks</h2>
+<pre><code class="bash">gtfToGenePred -geneNameAsName2 -genePredExt genome/hg38/gtf/gencode.gtf genome/hg38/genePred/gencode.genePredExt
+gffread -E --bed genome/hg38/gtf/gencode.gtf -o /dev/stdout | bedtools sort &gt; genome/hg38/igv/gencode.bed
+./tools/IGVTools/igvtools index genome/hg38/igv/gencode.bed
+</code></pre>
+
+<h2 id="domains">Domains</h2>
+<pre><code class="bash">gffread --bed -o genome/hg38/bed/long_RNA.bed genome/hg38/gtf/long_RNA.gtf
+gffread --bed -o genome/hg38/bed/gencode_tRNA.bed genome/hg38/gtf/gencode_tRNA.gtf
+
+[ -d &quot;output/scirep/gdomains/20/05.bed&quot; ] || mkdir -p output/scirep/gdomains/20
+{
+    bin/tbed2gbed &lt;(cat genome/hg38/bed/long_RNA.bed genome/hg38/bed/gencode_tRNA.bed) &lt;(grep -v '^chr' output/scirep/domains/20/05.bed) /dev/stdout
+    awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}/^chr/{print $0,0,0,0,1,$3-$2,0}' output/scirep/domains/20/05.bed
+} | bedtools sort &gt; output/scirep/gdomains/20/05.bed
+</code></pre>
+
+<h2 id="custom-reference-genome">Custom reference genome</h2>
+<ul>
+<li>IGV genome repository: (https://s3.amazonaws.com/igv.org.genomes/genomes.json)</li>
+<li>Cytoband schema: <a href="http://rohsdb.cmb.usc.edu/GBshape/cgi-bin/hgTables?db=hg19&amp;hgta_group=map&amp;hgta_track=cytoBand&amp;hgta_table=cytoBand&amp;hgta_doSchema=describe+table+schema">UCSC</a></li>
+</ul>
+<pre><code class="bash">genome=&quot;rRNA&quot;
+fastaURL=&quot;genome/hg38/fasta/${genome}.fa&quot;
+fastaIndexURL=&quot;genome/hg38/fasta/${genome}.fa.fai&quot;
+cytobandURL=&quot;genome/hg38/cytoband/${genome}.txt&quot;
+refURL=&quot;genome/hg38/genePred/${genome}.genePred&quot;
+# convert NR_ ids to rRNA names
+# gene_id|gene_name
+rRNAIdFile=&quot;genome/hg38/source/refSeq_rRNA.ids.txt&quot;
+
+awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}{print $1,0,$2,&quot;p&quot;NR&quot;.1&quot;,&quot;gneg&quot;}' &quot;$fastaIndexURL&quot; &gt; &quot;$cytobandURL&quot;
+bedToGenePred &lt;(awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}NR==FNR{split($0,a,&quot;|&quot;);name[a[1]]=a[2];next}{print $1,0,$2,name[$1],0,&quot;+&quot;}' &quot;$rRNAIdFile&quot; &quot;$fastaIndexURL&quot;) &quot;$refURL&quot;
+
+</code></pre>
+
+<pre><code class="bash">genome=&quot;circRNA&quot;
+fastaURL=&quot;genome/hg38/fasta/${genome}.fa&quot;
+fastaIndexURL=&quot;genome/hg38/fasta/${genome}.fa.fai&quot;
+cytobandURL=&quot;genome/hg38/cytoband/${genome}.txt&quot;
+refURL=&quot;genome/hg38/genePred/${genome}.genePred&quot;
+
+awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}{print $1,0,$2,&quot;p&quot;NR&quot;.1&quot;,&quot;gneg&quot;}' &quot;$fastaIndexURL&quot; &gt; &quot;$cytobandURL&quot;
+bedToGenePred &lt;(awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}{print $1,0,$2,$1,0,&quot;+&quot;}' &quot;$fastaIndexURL&quot;) &quot;$refURL&quot;
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../FAQ/" class="btn btn-neutral float-right" title="Frequently Asked Questions">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../bigwig/" class="btn btn-neutral" title="Generate BigWig Files"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../bigwig/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../FAQ/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

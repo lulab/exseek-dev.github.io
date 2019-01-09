@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>Overview - exseek</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Overview";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> exseek</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Overview</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#exseek">exSeek</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#workflow">Workflow</a></li>
+        
+            <li><a class="toctree-l3" href="#installation">Installation</a></li>
+        
+            <li><a class="toctree-l3" href="#input-files">Input files</a></li>
+        
+            <li><a class="toctree-l3" href="#basic-usage-of-exseek">Basic usage of exSeek</a></li>
+        
+            <li><a class="toctree-l3" href="#small-rna-seq-analysis">Small RNA-seq analysis</a></li>
+        
+            <li><a class="toctree-l3" href="#generate-count-matrix">Generate count matrix</a></li>
+        
+            <li><a class="toctree-l3" href="#long-rna-seq-analysis">Long RNA-seq analysis</a></li>
+        
+            <li><a class="toctree-l3" href="#frequently-asked-questions">Frequently asked Questions</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="get_started/">Get Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="genome_and_annotatins.md">Genome and Annotations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="small_rna_pipeline.md">Small RNA-seq mapping</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="long_rna_pipeline.md">Long RNA-seq mapping</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="matrix_processing/">Matrix processing</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="feature_selection.md">Feature Selection</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="cluster_configuration/">Run on a cluster</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="configuration/">Configuration File Reference</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Utilities</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="quality_control/">Quality Control</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="adapter_removal/">Adapter Removal</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="bigwig/">Generate BigWig Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="igv_browser/">IGV Browser</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="FAQ/">Frequently Asked Questions</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">exseek</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Overview</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="exseek">exSeek</h1>
+<p><a href="https://travis-ci.com/lulab/exSeek-dev"><img alt="Build Status" src="https://travis-ci.com/lulab/exSeek-dev.svg?token=CyRgUWsqWCctKvAxMXto&amp;branch=master" /></a></p>
+<h2 id="workflow">Workflow</h2>
+<p><img alt="workflow" src="https://raw.githubusercontent.com/lulab/exSeek/master/assets/whole_pipe.png" /></p>
+<h2 id="installation">Installation</h2>
+<p>Install required software packages according to <a href="requirements/">requirements</a></p>
+<p>Download the scripts:</p>
+<pre><code class="bash">git clone https://github.com/lulab/exSeek-dev.git
+</code></pre>
+
+<h2 id="input-files">Input files</h2>
+<h3 id="genome-and-annotation-directory">Genome and annotation directory</h3>
+<p>Download preprocessed genome annotations to <code>genome/hg38</code></p>
+<p>Refer to the <a href="genome_and_annotations/">documentation</a> for details.</p>
+<h3 id="input-data-files">Input data files</h3>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${input_dir}/fastq/${sample_id}.fastq</code></td>
+<td>Read files (single-end sequencing)</td>
+</tr>
+<tr>
+<td><code>${input_dir}/fastq/${sample_id}_1.fastq</code>, <code>${input_dir}/fastq/${sample_id}_2.fastq</code></td>
+<td>Read files (paired-end sequencing)</td>
+</tr>
+<tr>
+<td><code>${input_dir}/sample_ids.txt</code></td>
+<td>A text file with one sample ID per line.</td>
+</tr>
+<tr>
+<td><code>${input_dir}/sample_classes.txt</code></td>
+<td>A tab-deliminated file (with header) with two columns: sample_id, label (optional)</td>
+</tr>
+<tr>
+<td><code>${input_dir}/batch_info.txt</code></td>
+<td>A comma-deliminated file (with header) with at least two columns: sample_id, batch1, batch2, ... (optional)</td>
+</tr>
+<tr>
+<td><code>${input_dir}/compare_groups.yaml</code></td>
+<td>A YAML file defining positive and negative classes. (optional)</td>
+</tr>
+<tr>
+<td><code>${config_dir}/${dataset}.yaml</code></td>
+<td>A YAML file for configuration parameters for the dataset</td>
+</tr>
+</tbody>
+</table>
+<p><strong>compare_groups.yaml</strong></p>
+<p>Every key-value pairs defines a compare group and a negative-positive class pair:</p>
+<pre><code class="yaml">Normal-CRC: [&quot;Healthy Control&quot;, &quot;Colorectal Cancer&quot;]
+</code></pre>
+
+<h3 id="dataset-configuration-file">Dataset configuration file</h3>
+<p>All parameters are specified in a configuration file in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> format.</p>
+<p>The default configuration file is (snakemake/default_config.yaml).</p>
+<p>Example configuration files can be found in <em>config/</em>.</p>
+<p>The parameter values in the configuration file can also be overrided through the <em>--config</em> option in <a href="https://snakemake.readthedocs.io/en/stable/executable.html">snakemake</a>.</p>
+<p>The following parameters should be changed:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>genome_dir</td>
+<td>Directory for genome and annotation files</td>
+<td>genome/hg38</td>
+</tr>
+<tr>
+<td>data_dir</td>
+<td>Directory for input files</td>
+<td>data/dataset</td>
+</tr>
+<tr>
+<td>temp_dir</td>
+<td>Temporary directory</td>
+<td>tmp</td>
+</tr>
+<tr>
+<td>output_dir</td>
+<td>Directory for all output files</td>
+<td>output/dataset</td>
+</tr>
+<tr>
+<td>aligner</td>
+<td>Mapping software</td>
+<td>bowtie2</td>
+</tr>
+<tr>
+<td>adaptor</td>
+<td>3' adaptor sequence for single-end RNA-seq</td>
+<td>AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cluster-configuration-file">Cluster configuration file</h3>
+<p>Please refer the <a href="https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html#cluster-configuration">link</a> for descriptions of cluster configuration file.</p>
+<h2 id="basic-usage-of-exseek">Basic usage of exSeek</h2>
+<p>Run <code>exseek.py --help</code> to get basic usage:</p>
+<pre><code>usage: exseek.py [-h] --dataset DATASET [--config-dir CONFIG_DIR] [--cluster]
+                 [--cluster-config CLUSTER_CONFIG]
+                 [--cluster-command CLUSTER_COMMAND]
+                 [--singularity SINGULARITY]
+                 [--singularity-wrapper-dir SINGULARITY_WRAPPER_DIR]
+                 {quality_control,prepare_genome,mapping,count_matrix,call_domains,normalization,feature_selection,update_sequential_mapping,update_singularity_wrappers}
+
+exSeek main program
+
+positional arguments:
+  {quality_control,prepare_genome,mapping,count_matrix,call_domains,normalization,feature_selection,update_sequential_mapping,update_singularity_wrappers}
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --dataset DATASET, -d DATASET
+                        dataset name
+  --config-dir CONFIG_DIR, -c CONFIG_DIR
+                        directory for configuration files
+  --cluster             submit to cluster
+  --cluster-config CLUSTER_CONFIG
+                        cluster configuration file ({config_dir}/cluster.yaml
+                        by default)
+  --cluster-command CLUSTER_COMMAND
+                        command for submitting job to cluster (default read
+                        from {config_dir}/cluster_command.txt
+  --singularity SINGULARITY
+                        singularity image file
+  --singularity-wrapper-dir SINGULARITY_WRAPPER_DIR
+                        directory for singularity wrappers
+</code></pre>
+
+<p><strong>Note</strong></p>
+<ul>
+<li>Other arguments are passed to <em>snakemake</em></li>
+<li>Specify number of processes to run in parallel with <em>-j</em></li>
+</ul>
+<h2 id="small-rna-seq-analysis">Small RNA-seq analysis</h2>
+<h3 id="configuration-file">Configuration file</h3>
+<p>An example configuration file for small RNA single-end sequencing can be found in <code>config/small_se_example.yaml</code>.</p>
+<h3 id="quality-control-adaptor-removal-and-trimming">Quality control, adaptor removal and trimming</h3>
+<pre><code class="bash">${exseek_path}/bin/exseek.py quality_control --dataset ${dataset}
+</code></pre>
+
+<h3 id="mapping">Mapping</h3>
+<pre><code class="bash">exseek.py mapping --dataset ${dataset}
+</code></pre>
+
+<p><strong>Note</strong></p>
+<p>If you changed mapping order in the <em>rna_types</em> config variable, you should update the snakefile with the command:</p>
+<pre><code class="bash">exseek.py update_sequential_mapping --dataset ${dataset}
+</code></pre>
+
+<p>Description of output files: <a href="output_files/">output_files</a></p>
+<h2 id="generate-count-matrix">Generate count matrix</h2>
+<pre><code class="bash">${exseek_path}/bin/exseek.py count_matrix --dataset ${dataset}
+</code></pre>
+
+<p><strong>Count matrix</strong></p>
+<ul>
+<li>File path: ${output_dir}/count_matrix/transcript.txt</li>
+<li>First row: sample IDs</li>
+<li>First column: feature names</li>
+<li>Feature name: gene_id|gene_type|gene_name</li>
+</ul>
+<h3 id="call-domains">Call domains</h3>
+<pre><code class="bash">${exseek_path}/bin/exseek.py call_domains --dataset ${dataset}
+</code></pre>
+
+<p><strong>Read count matrix</strong></p>
+<ul>
+<li>File path: ${output_dir}/count_matrix/domain_long.txt</li>
+<li>First row: sample IDs</li>
+<li>First column: feature names</li>
+<li>Feature name: gene_id|gene_type|gene_name|domain_id|transcript_id|start|end</li>
+</ul>
+<h3 id="combine-read-counts-of-mirnapirna-and-domains">Combine read counts of miRNA/piRNA and domains</h3>
+<pre><code class="bash">${exseek_path}/bin/exseek.py combine_domains --dataset ${dataset}
+</code></pre>
+
+<h3 id="normalization">Normalization</h3>
+<pre><code class="bash">${exseek_path}/bin/exseek.py normalization --dataset ${dataset}
+</code></pre>
+
+<h3 id="feature-selection">Feature selection</h3>
+<pre><code class="bash">${exseek_path}/bin/exseek.py feature_selection --dataset ${dataset}
+</code></pre>
+
+<h3 id="differential-expression">Differential expression</h3>
+<pre><code class="bash">${exseek_path}/bin/exseek.py differential_expression --dataset ${dataset}
+</code></pre>
+
+<h2 id="long-rna-seq-analysis">Long RNA-seq analysis</h2>
+<h3 id="configuration-file_1">Configuration file</h3>
+<p>An example configuration file for long RNA paired-end sequencing can be found in <code>config/long_pe_example.yaml</code>.</p>
+<h3 id="quality-control-and-adaptor-removal">Quality control and adaptor removal</h3>
+<pre><code class="bash">${exseek_path}/bin/exseek.py quality_control --dataset ${dataset}
+</code></pre>
+
+<h3 id="mapping_1">Mapping</h3>
+<pre><code class="bash">${exseek_path}/bin/exseek.py mapping --dataset ${dataset}
+</code></pre>
+
+<h3 id="generate-count-matrix_1">Generate count matrix</h3>
+<pre><code class="bash">${exseek_path}/bin/exseek.py count_matrix --dataset ${dataset}
+</code></pre>
+
+<h2 id="frequently-asked-questions">Frequently asked Questions</h2>
+<p><a href="FAQ/">FAQs</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="get_started/" class="btn btn-neutral float-right" title="Get Started">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="get_started/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2019-01-09 12:12:49
+-->

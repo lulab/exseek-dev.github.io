@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Matrix processing - exseek</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Matrix processing";
+    var mkdocs_page_input_path = "matrix_processing.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> exseek</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Overview</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../get_started/">Get Started</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../genome_and_annotatins.md">Genome and Annotations</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../small_rna_pipeline.md">Small RNA-seq mapping</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../long_rna_pipeline.md">Long RNA-seq mapping</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Matrix processing</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#matrix-processing">Matrix Processing</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#filter">Filter</a></li>
+        
+            <li><a class="toctree-l3" href="#imputation">Imputation</a></li>
+        
+            <li><a class="toctree-l3" href="#normalization">Normalization</a></li>
+        
+            <li><a class="toctree-l3" href="#batch-removal">Batch Removal</a></li>
+        
+            <li><a class="toctree-l3" href="#-visualize-batch-by-counts">- visualize batch by counts</a></li>
+        
+            <li><a class="toctree-l3" href="#-visualize-batch-by-specific-rna-counts">- visualize batch by specific RNA counts</a></li>
+        
+            <li><a class="toctree-l3" href="#visualize-processed-result">visualize processed result</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../feature_selection.md">Feature Selection</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cluster_configuration/">Run on a cluster</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../configuration/">Configuration File Reference</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Utilities</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../quality_control/">Quality Control</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../adapter_removal/">Adapter Removal</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../bigwig/">Generate BigWig Files</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../igv_browser/">IGV Browser</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../FAQ/">Frequently Asked Questions</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">exseek</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Matrix processing</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="matrix-processing">Matrix Processing</h1>
+<p><img alt="" src="../assets/pipeline_matrix.png" /></p>
+<pre><code>usage: bin/matrix-process.R [-h] -s STEP -i INPUT -c CLASS -b BATCH
+                            --filterout FILTEROUT --imputeout IMPUTEOUT
+                            --normalizeout NORMALIZEOUT --batchremoveout
+                            BATCHREMOVEOUT [--filtercount NUMBER]
+                            [--filtersample NUMBER] [--imputemethod STRING]
+                            [--imputecluster NUMBER] [--imputenum NUMBER]
+                            [--imputecutoff NUMBER] [--imputealpha NUMBER]
+                            [--normmethod STRING] [--normtopk NUMBER]
+                            [--cvthreshold NUMBER] [--removetype STRING]
+                            [--refergenefile STRING] [--batchmethod STRING]
+                            [--batchindex INT] [-p NUMBER]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s STEP, --step STEP  which step to run
+  -i INPUT, --input INPUT
+                        input expression matrix file
+  -c CLASS, --class CLASS
+                        input class info file
+  -b BATCH, --batch BATCH
+                        input batch info file
+  --filterout FILTEROUT
+                        output filter path
+  --imputeout IMPUTEOUT
+                        output imputation path
+  --normalizeout NORMALIZEOUT
+                        output normalization file
+  --batchremoveout BATCHREMOVEOUT
+                        output batchremoved file
+  --filtercount NUMBER  filter by counts of a gene [default = 5]
+  --filtersample NUMBER
+                        filter by counts of sample above certain counts of a
+                        gene [default = 10]
+  --imputemethod STRING
+                        the imputation algorithm to use [default =
+                        scimpute_count]
+  --imputecluster NUMBER
+                        cluster number in scImpute [default = 5]
+  --imputenum NUMBER    number in viper [default = 5000]
+  --imputecutoff NUMBER
+                        cutoff in viper [default = 0.5]
+  --imputealpha NUMBER  alpha in viper [default = 0.1]
+  --normmethod STRING   the normalization algorithm to use [default = SCNorm]
+  --normtopk NUMBER     top K feature as scale factor [default = 20]
+  --cvthreshold NUMBER  coefficient variance threshold of reference gene,
+                        filter ref gene with CV bigger than [default = 0.5]
+  --removetype STRING   remove some time of RNA for normalization scale factor
+                        calculation [default = miRNA,piRNA]
+  --refergenefile STRING
+                        reference gene file path [default = None]
+  --batchmethod STRING  the batch removal algorithm to use [default = RUV]
+  --batchindex INT      batch index to select which batch to use [default = 1]
+  -p NUMBER, --processors NUMBER
+                        Number of processors to use. This option is useful on
+                        multicore *nix or Mac machine only, when performing
+                        multiple runs (nrun &gt; 1) [default = 1]
+</code></pre>
+
+<ul>
+<li><strong>Some parameters:</strong></li>
+</ul>
+<pre><code>-s filter imputation normalization batch_removal
+--imputemethod scimpute_count,viper_count,null
+--normmethod SCnorm,TMM,RLE,CPM,CPM_top,CPM_rm,CPM_refer,null
+--batchmetod RUV,Combat,null
+--batchindex 1
+</code></pre>
+
+<ul>
+<li><strong>Example:</strong></li>
+</ul>
+<pre><code>bin/matrix-process.R -s imputation \
+-i output/lulab_hcc/count_matrix/domains_combined.txt \
+--filterout  output/lulab_hcc/matrix_processing/ \
+--imputemethod viper_count \
+--imputeout output/lulab_hcc/matrix_processing/ \
+--filtercount 5 \
+--filtersample 10 \
+--imputecluster 5 \
+--imputenum 5000 \
+--imputecutoff 0.1 \
+--imputealpha 0.5 \
+-p 4 \
+--normalizeout output/lulab_hcc/matrix_processing/ \
+--normmethod RLE \
+--normtopk 20 \
+--removetype miRNA,piRNA \
+--cvthreshold 0.5 \
+--refergenefile data/matrix_processing/refer_gene_id.txt \
+-c data/lulab_hcc/sample_classes.txt \
+-b data/lulab_hcc/batch_info.txt \
+--batchremoveout output/scirep/matrix_processing/ \
+--batchmethod RUV \
+--batchindex 1
+</code></pre>
+
+<h2 id="filter">Filter</h2>
+<p>filter lowly expressed reads</p>
+<h2 id="imputation">Imputation</h2>
+<p>scImpute</p>
+<h2 id="normalization">Normalization</h2>
+<p>Normalization is performed for the systematic error of each sample (such as the sequencing depth).</p>
+<p><strong> Different Normalization Methods</strong></p>
+<ul>
+<li>CPM(counts per million)</li>
+<li>Use candidate reference gene. For example: <code>'MIR1228', 'MIR16-1', 'MIR16-2', 'MIR21', 'MIR23A', 'MIR23B', 'MIR23C', 'MIR451A', 'MIR15A', 'MIR15B'</code></li>
+<li>remove piRNA and miRNA and use CPM(counts per million)</li>
+<li>Remove top k and scale others (then add top k back)</li>
+<li>use packages:<ul>
+<li>SCNorm</li>
+<li>RLE</li>
+<li>TMM</li>
+</ul>
+</li>
+</ul>
+<h3 id="select-reference-gene">Select Reference Gene</h3>
+<p>A density plot or a violin plot is used to analyze the coefficient of variation of different reference genes, and select stable miRNAs as an internal references with a small coefficient of variation. It can be seen that the variation coefficient of MIR1228 and MIR15B is not stable enough, and should not be used as an internal reference.</p>
+<ul>
+<li>Density plot of CV</li>
+</ul>
+<p><img alt="" src="../assets/cv_density.png" /> </p>
+<ul>
+<li>Boxplot of expression value (log)</li>
+</ul>
+<p><img alt="" src="../assets/refer_box.png" /></p>
+<h3 id="criteria-to-use-top20">Criteria to use top20</h3>
+<p>We recommend to remove top20 and use left genes sum as scale factor if they account for more than 50% of total counts.</p>
+<ul>
+<li>cumulative ratio</li>
+</ul>
+<p><img alt="" src="../assets/topk.png" /></p>
+<ul>
+<li>highest expressed gene</li>
+</ul>
+<p><img alt="" src="../assets/plot_highest_exprs.png" /></p>
+<h2 id="batch-removal">Batch Removal</h2>
+<h3 id="visualize-batch-effect">Visualize Batch Effect</h3>
+<h2 id="-visualize-batch-by-counts">- visualize batch by counts</h2>
+<p><img alt="" src="../assets/show_batch.png" /></p>
+<h2 id="-visualize-batch-by-specific-rna-counts">- visualize batch by specific RNA counts</h2>
+<p><img alt="" src="../assets/show_batch_rna.png" /></p>
+<ul>
+<li>[ ] to do select batch factor plot</li>
+</ul>
+<h3 id="batch-removal-methods">Batch Removal methods</h3>
+<ul>
+<li>RUVs</li>
+<li>Combat</li>
+</ul>
+<h2 id="visualize-processed-result">visualize processed result</h2>
+<h3 id="pca-visualization">PCA visualization</h3>
+<p><strong>Use alignment score to Quantify Clustering effect.</strong></p>
+<p>PCA and t-SNE can visualize the aggregation degree of the sample, but it cannot be quantified to compare different methods. We provide the following two functions <em>alignment_socre</em> &amp; <em>knn_score</em> to quantify the binary classification and multi-class classification respectively. The closer the value is to 1, the more aggregated samples are.</p>
+<ul>
+<li>PCA visualization of original matrix and processed matrix</li>
+</ul>
+<p><img alt="" src="../assets/PCA.png" /></p>
+<h3 id="expression-vs-count-depth">expression vs count depth</h3>
+<ul>
+<li>
+<p>scImpute
+<img alt="" src="../assets/mat_impute_count_depth.png" /></p>
+</li>
+<li>
+<p>CPM
+<img alt="" src="../assets/mat_cpm_count_depth.png" /></p>
+</li>
+<li>
+<p>CPM, remove mi and piRNA
+<img alt="" src="../assets/mat_cpm_rm_count_depth.png" /></p>
+</li>
+<li>
+<p>CPM remove top
+<img alt="" src="../assets/mat_cpm_top_count_depth.png" /></p>
+</li>
+<li>
+<p>CPM use reference gene
+<img alt="" src="../assets/mat_cpm_refer_count_depth.png" /></p>
+</li>
+<li>
+<p>RLE
+<img alt="" src="../assets/mat_rle_count_depth.png" /></p>
+</li>
+</ul>
+<p>-TMM
+<img alt="" src="../assets/mat_tmm_count_depth.png" /></p>
+<p>-SCnorm
+<img alt="" src="../assets/mat_scnorm_count_depth.png" /></p>
+<h3 id="relative-log-expression-box-plot">Relative Log Expression box plot</h3>
+<p><img alt="" src="../assets/RLE.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../cluster_configuration/" class="btn btn-neutral float-right" title="Run on a cluster">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../installation/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../cluster_configuration/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
