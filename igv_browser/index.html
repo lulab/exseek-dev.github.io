@@ -444,13 +444,13 @@ bin/create_igv.py create_reference --genome rRNA --name 'Human (rRNA)' \
     --gene-ids tmp/gene_ids.txt \
     --fasta genome/hg38/fasta/rRNA.fa -o genome/hg38/igv/rRNA
 awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}NR&gt;1{split($1,a,&quot;|&quot;);c=0;for(i=2;i&lt;=NF;i++)c+=$i; print a[1],c/(NF-1)}' output/exorbase/count_matrix/circRNA.txt \
-    | awk '$2&gt;20' &gt; tmp/circRNA.txt
-
+    | awk '$2&gt;50' &gt; tmp/circRNA.txt
 bin/create_igv.py create_reference --genome circRNA --name 'Human (circRNA)' \
     --gene-ids tmp/circRNA.txt \
     --fasta genome/hg38/fasta/circRNA.fa -o genome/hg38/igv/circRNA
 map_step=circRNA
 dataset=exorbase
+base_url=&quot;http://166.111.156.12:10080/genomebrowse&quot;
 bin/create_igv.py generate_config --locus &quot;$locus&quot; \
     --sample-classes data/${dataset}/sample_classes.txt \
     --bigwig-pattern &quot;${dataset}/{sample_id}.${map_step}_rmdup.{strand}.bigWig&quot; \
