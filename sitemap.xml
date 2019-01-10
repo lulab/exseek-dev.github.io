@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/get_started/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/installation/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/genome_and_annotations/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/small_rna_mapping/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/long_rna_mapping/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/matrix_processing/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/feature_selection/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/cluster_configuration/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/configuration/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/quality_control/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/adapter_removal/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/bigwig/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/igv_browser/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2019-01-09</lastmod>
+     <loc>https://exseek.ncrnalab.org/FAQ/</loc>
+     <lastmod>2019-01-10</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

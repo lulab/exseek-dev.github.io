@@ -19,7 +19,7 @@
     // Current page data
     var mkdocs_page_name = "Matrix processing";
     var mkdocs_page_input_path = "matrix_processing.md";
-    var mkdocs_page_url = null;
+    var mkdocs_page_url = "/matrix_processing/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -175,6 +175,9 @@
     <li>Matrix processing</li>
     <li class="wy-breadcrumbs-aside">
       
+        <a href="https://github.com/lulab/exSeek/edit/master/docs/matrix_processing.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
     </li>
   </ul>
   <hr/>
@@ -184,7 +187,7 @@
               
                 <h1 id="matrix-processing">Matrix Processing</h1>
 <p><img alt="" src="../img/pipeline_matrix.png" /></p>
-<pre><code>usage: bin/matrix-process.R [-h] -s STEP -i INPUT -c CLASS -b BATCH
+<pre><code class="bash">usage: bin/matrix-process.R [-h] -s STEP -i INPUT -c CLASS -b BATCH
                             --filterout FILTEROUT --imputeout IMPUTEOUT
                             --normalizeout NORMALIZEOUT --batchremoveout
                             BATCHREMOVEOUT [--filtercount NUMBER]
@@ -245,7 +248,7 @@ optional arguments:
 <ul>
 <li><strong>Some parameters:</strong></li>
 </ul>
-<pre><code>-s filter imputation normalization batch_removal
+<pre><code class="bash">-s filter imputation normalization batch_removal
 --imputemethod scimpute_count,viper_count,null
 --normmethod SCnorm,TMM,RLE,CPM,CPM_top,CPM_rm,CPM_refer,null
 --batchmetod RUV,Combat,null
@@ -255,7 +258,7 @@ optional arguments:
 <ul>
 <li><strong>Example:</strong></li>
 </ul>
-<pre><code>bin/matrix-process.R -s imputation \
+<pre><code class="bash">bin/matrix-process.R -s imputation \
 -i output/lulab_hcc/count_matrix/domains_combined.txt \
 --filterout  output/lulab_hcc/matrix_processing/ \
 --imputemethod viper_count \
@@ -408,6 +411,8 @@ optional arguments:
 
   <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/lulab/exSeek/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../long_rna_mapping/" style="color: #fcfcfc;">&laquo; Previous</a></span>
