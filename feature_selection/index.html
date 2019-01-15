@@ -184,18 +184,53 @@ we can run feature selection module using the following command:</p>
 
 <h2 id="output-files">Output files</h2>
 <h3 id="outuput-directory">Outuput directory</h3>
-<p>Feature selection results using one combination of parameters are saved in a separate directory:
-<code>${output_dir}/cross_validation/${preprocess_method}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}</code></p>
+<p>Feature selection results using one combination of parameters are saved in a separate directory:</p>
+<pre><code>${output_dir}/cross_validation/${preprocess_method}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}
+</code></pre>
+
 <p><strong>Variables in file patterns</strong></p>
-<p>| Variable | Descrpition |
-| <code>output_dir</code> | Output directory for the dataset, e.g. <code>output/dataset</code> |
-| <code>preprocess_method</code> | Combination of matrix processing methods |
-| <code>count_method</code> | Type of feature counts, e.g. <code>domains_combined</code>, <code>domains_long</code>, <code>transcript</code>, <code>featurecounts</code> |
-| <code>compare_group</code> | Name of the negative-positive class pair defined in <code>compare_groups.yaml</code> |
-| <code>classifier</code> | Classifier defined in the configuration file |
-| <code>n_select</code> | Maximum number of features to select |
-| <code>selector</code> | Feature selection method, e.g. <code>robust</code>, <code>rfe</code> |
-| <code>fold_change_filter_direction</code> | Direction of fold change for filtering features. Three possible values: <code>up</code>, <code>down</code> and <code>any</code> |</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Descrpition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>output_dir</code></td>
+<td>Output directory for the dataset, e.g. <code>output/dataset</code></td>
+</tr>
+<tr>
+<td><code>preprocess_method</code></td>
+<td>Combination of matrix processing methods</td>
+</tr>
+<tr>
+<td><code>count_method</code></td>
+<td>Type of feature counts, e.g. <code>domains_combined</code>, <code>domains_long</code>, <code>transcript</code>, <code>featurecounts</code></td>
+</tr>
+<tr>
+<td><code>compare_group</code></td>
+<td>Name of the negative-positive class pair defined in <code>compare_groups.yaml</code></td>
+</tr>
+<tr>
+<td><code>classifier</code></td>
+<td>Classifier defined in the configuration file</td>
+</tr>
+<tr>
+<td><code>n_select</code></td>
+<td>Maximum number of features to select</td>
+</tr>
+<tr>
+<td><code>selector</code></td>
+<td>Feature selection method, e.g. <code>robust</code>, <code>rfe</code></td>
+</tr>
+<tr>
+<td><code>fold_change_filter_direction</code></td>
+<td>Direction of fold change for filtering features. Three possible values: <code>up</code>, <code>down</code> and <code>any</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="files-in-output-directory">Files in output directory</h3>
 <table>
 <thead>
