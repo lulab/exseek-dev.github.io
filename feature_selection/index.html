@@ -88,6 +88,17 @@
     <a class="current" href="./">Feature Selection</a>
     <ul class="subnav">
             
+    <li class="toctree-l2"><a href="#feature-selection">Feature Selection</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#run-feature-selection-module">Run feature selection module</a></li>
+        
+            <li><a class="toctree-l3" href="#output-files">Output files</a></li>
+        
+        </ul>
+    
+
     </ul>
 	    </li>
           
@@ -164,7 +175,103 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="feature-selection">Feature Selection</h1>
+<h2 id="run-feature-selection-module">Run feature selection module</h2>
+<p>Assume that we have already run <code>normalization</code> module and selected best matrix processing method based on the UCA score, 
+we can run feature selection module using the following command:</p>
+<pre><code class="bash">exseek.py feature_selection -d ${dataset}
+</code></pre>
+
+<h2 id="output-files">Output files</h2>
+<h3 id="outuput-directory">Outuput directory</h3>
+<p>Feature selection results using one combination of parameters are saved in a separate directory:
+<code>${output_dir}/cross_validation/${preprocess_method}.${count_method}/${compare_group}/${classifier}.${n_select}.${selector}.${fold_change_filter_direction}</code></p>
+<p><strong>Variables in file patterns</strong></p>
+<p>| Variable | Descrpition |
+| <code>output_dir</code> | Output directory for the dataset, e.g. <code>output/dataset</code> |
+| <code>preprocess_method</code> | Combination of matrix processing methods |
+| <code>count_method</code> | Type of feature counts, e.g. <code>domains_combined</code>, <code>domains_long</code>, <code>transcript</code>, <code>featurecounts</code> |
+| <code>compare_group</code> | Name of the negative-positive class pair defined in <code>compare_groups.yaml</code> |
+| <code>classifier</code> | Classifier defined in the configuration file |
+| <code>n_select</code> | Maximum number of features to select |
+| <code>selector</code> | Feature selection method, e.g. <code>robust</code>, <code>rfe</code> |
+| <code>fold_change_filter_direction</code> | Direction of fold change for filtering features. Three possible values: <code>up</code>, <code>down</code> and <code>any</code> |</p>
+<h3 id="files-in-output-directory">Files in output directory</h3>
+<table>
+<thead>
+<tr>
+<th>File name pattern</th>
+<th>Descrpition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>features.txt</code></td>
+<td>Selected features. Plain text with one column: feature names</td>
+</tr>
+<tr>
+<td><code>samples.txt</code></td>
+<td>Sample IDs in input matrix selected for feature selection</td>
+</tr>
+<tr>
+<td><code>classes.txt</code></td>
+<td>Sample class labels selected for feature selection</td>
+</tr>
+<tr>
+<td><code>final_model.pkl</code></td>
+<td>Final model fitted on all samples in Python pickle format</td>
+</tr>
+<tr>
+<td><code>metrics.train.txt</code></td>
+<td>Evaluation metrics on training data. First row is metric names. First column is index of each train-test split</td>
+</tr>
+<tr>
+<td><code>metrics.test.txt</code></td>
+<td>Same format with <code>metrics.train.txt</code> on test data.</td>
+</tr>
+<tr>
+<td><code>cross_validation.h5</code></td>
+<td>Cross-validation details in HDF5 format.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cross validation details (cross_validation.h5)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Dataset name</th>
+<th>Dimension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>feature_selection</td>
+<td>(n_splits, n_features)</td>
+<td>Binary matrix indicating features selected in each cross-validation split</td>
+</tr>
+<tr>
+<td>labels</td>
+<td>(n_samples,)</td>
+<td>True class labels</td>
+</tr>
+<tr>
+<td>predicted_labels</td>
+<td>(n_splits, n_samples)</td>
+<td>Predicted class labels on all samples</td>
+</tr>
+<tr>
+<td>predictions</td>
+<td>(n_splits, n_samples)</td>
+<td>Predicted probabilities of the positive class (or decision function for SVM)</td>
+</tr>
+<tr>
+<td>train_index</td>
+<td>(n_splits, n_samples)</td>
+<td>Binary matrix indicating training samples in each cross-validation split</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>
