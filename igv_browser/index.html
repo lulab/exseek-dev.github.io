@@ -123,21 +123,15 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#templates">Templates</a></li>
+            <li><a class="toctree-l4" href="#reference-genome-configuration-file">Reference genome configuration file</a></li>
         
-            <li><a class="toctree-l4" href="#genome-reference-from-igv">Genome reference from IGV</a></li>
+            <li><a class="toctree-l4" href="#custom-reference-genome-from-fasta-file">Custom reference genome from FASTA file</a></li>
         
-            <li><a class="toctree-l4" href="#generate-igv-html">Generate IGV html</a></li>
+            <li><a class="toctree-l4" href="#generate-igv-html">Generate IGV HTML</a></li>
         
-            <li><a class="toctree-l4" href="#igv-browser-reference">IGV Browser reference</a></li>
+            <li><a class="toctree-l4" href="#create-feature-database">Create feature database</a></li>
         
-            <li><a class="toctree-l4" href="#track-configuration-reference">Track configuration reference</a></li>
-        
-            <li><a class="toctree-l4" href="#reference-tracks">Reference tracks</a></li>
-        
-            <li><a class="toctree-l4" href="#domains">Domains</a></li>
-        
-            <li><a class="toctree-l4" href="#custom-reference-genome">Custom reference genome</a></li>
+            <li><a class="toctree-l4" href="#start-web-server">Start web server</a></li>
         
         </ul>
     
@@ -192,265 +186,101 @@
             <div class="section">
               
                 <h1 id="igv-genome-browser">IGV Genome Browser</h1>
-<h2 id="templates">Templates</h2>
-<pre><code class="bash">for d in img js css;do
-    [ -d &quot;templates/igv/$d&quot; ] || mkdir -p &quot;templates/igv/$d&quot;
-done
-wget -O templates/igv/img/favicon.ico 'https://igv.org/web/img/favicon.ico'
-wget -O templates/igv/js/igv.min.js 'https://igv.org/web/release/2.1.0/dist/igv.min.js'
-wget -O templates/igv/css/bootstrap.min.css 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
-wget -O templates/igv/js/bootstrap.min.js 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'
-wget -O templates/igv/js/jquery-3.2.1.slim.min.js 'https://code.jquery.com/jquery-3.2.1.slim.min.js'
-wget -O templates/igv/js/popper.min.js 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'
-</code></pre>
-
-<h2 id="genome-reference-from-igv">Genome reference from IGV</h2>
-<pre><code class="bash">wget -O genome/hg38/source/igv.hg38.genome http://s3.amazonaws.com/igv.broadinstitute.org/genomes/hg38.genome
-unzip genome/hg38/source/igv.hg38.genome -d genome/hg38/igv
-</code></pre>
-
-<h2 id="generate-igv-html">Generate IGV html</h2>
-<h2 id="igv-browser-reference">IGV Browser reference</h2>
-<h3 id="igvbrowser">igv.browser</h3>
-<p>addMultiLocusPanelWithGenomicStateAtIndex: ƒ (genomicState,index,viewportWidth)
-addTrack: ƒ (track)
-buildViewportsWithGenomicStateList: ƒ (genomicStateList)
-cancelTrackPan: ƒ ()
-compressedSession: ƒ ()
-dispose: ƒ ()
-emptyViewportContainers: ƒ ()
-endTrackDrag: ƒ ()
-findTracks: ƒ (property,value)
-fireEvent: ƒ (eventName,args,thisObj)
-getChromosomeLengthBP: ƒ (genome,referenceFrame)
-goto: ƒ (chrName,start,end)
-hideCenterGuide: ƒ ()
-hideCursorGuide: ƒ ()
-hideTrackLabels: ƒ ()
-isMultiLocusMode: ƒ ()
-isMultiLocusWholeGenomeView: ƒ ()
-loadGenome: ƒ (idOrConfig,initialLocus)
-loadInProgress: ƒ ()
-loadSampleInformation: ƒ (url)
-loadSession: ƒ (sessionURL,config)
-loadTrack: ƒ (config)
-loadTrackList: ƒ (configList)
-minimumBases: ƒ ()
-mouseDownOnViewport: ƒ (e,viewport)
-on: ƒ (eventName,fn)
-presentAlert: ƒ (alert,$parent,callback)
-presentMessageWithCallback: ƒ (message,callback)
-presentSplitScreenMultiLocusPanel: ƒ (alignment,genomicState)
-removeAllTracks: ƒ (removeSequence)
-removeMultiLocusPanelWithGenomicState: ƒ (genomicState,doResize)
-removeTrack: ƒ (track)
-removeTrackByName: ƒ (name)
-renderSVG: ƒ (config)
-reorderTracks: ƒ ()
-resize: ƒ ()
-search: ƒ (string,init)
-selectMultiLocusPanelWithGenomicState: ƒ (selectedGenomicState)
-sessionURL: ƒ ()
-setTrackHeight: ƒ (newHeight)
-setTrackLabelName: ƒ (trackView,name)
-showCenterGuide: ƒ ()
-showCursorGuide: ƒ ()
-showTrackLabels: ƒ ()
-startTrackDrag: ƒ (trackView)
-toJSON: ƒ ()
-un: ƒ (eventName,fn)
-updateLocusSearchWidget: ƒ (genomicState)
-updateTrackDrag: ƒ (dragDestination)
-updateUIWithGenomicStateListChange: ƒ (genomicStateList)
-updateViews: ƒ (genomicState,views)
-updateZoomSlider: ƒ ($slider)
-viewportContainerWidth: ƒ ()
-viewportWidth: ƒ ()
-visibilityChange: ƒ ()
-zoom: ƒ (scaleFactor)
-zoomIn: ƒ ()
-zoomOut: ƒ ()
-zoomWithRangePercentage: ƒ (percentage)
-zoomWithScaleFactor: ƒ (centerBPOrUndefined,viewportOrUndefined,scaleFactor)</p>
-<h3 id="file-extensions">File extensions</h3>
-<ul>
-<li>narrowpeak</li>
-<li>broadpeak</li>
-<li>peaks</li>
-<li>bedgraph</li>
-<li>wig</li>
-<li>gff3</li>
-<li>gff</li>
-<li>gtf</li>
-<li>fusionjuncspan</li>
-<li>refflat</li>
-<li>seg</li>
-<li>aed</li>
-<li>bed</li>
-<li>vcf</li>
-<li>bb</li>
-<li>bigbed</li>
-<li>bw</li>
-<li>bigwig</li>
-<li>bam</li>
-<li>tdf</li>
-<li>refgene</li>
-<li>genepred</li>
-<li>genepredext</li>
-<li>bedpe</li>
-<li>bp</li>
-<li>snp</li>
-<li>rmsk</li>
-</ul>
-<h2 id="track-configuration-reference">Track configuration reference</h2>
-<pre><code class="yaml">track1:
-    type: wig
-    format: bigwig
-    height: 200
-    min: 0
-    max: 100
-    color: 'rgb(0,0,0)'
-    autoScale: true,
-    logScale: false
-</code></pre>
-
-<pre><code class="bash">long_RNA:
-    url: genome/hg38/genePred/long_RNA.genePred
-    type: annotation
-    format: genepred
-    height: 200
-
-{
-    echo 'reference:
+<h2 id="reference-genome-configuration-file">Reference genome configuration file</h2>
+<p>A template for reference configuration can be found in <code>templates/igv/config/genome.yaml</code>:</p>
+<pre><code class="yaml">genome: hg38
+reference:
     id: hg38
+    name: hg38
     fastaURL: genome/hg38/fasta/genome.fa
     indexURL: genome/hg38/fasta/genome.fa.fai
     cytobandURL: genome/hg38/igv/cytoBandIdeo.txt
-Refseq Genes:
-    type: annotation
-    format: refGene
-    url: genome/hg38/igv/refGene.txt
-    visibilityWindow: 300000000
-    height: 80
-GENCODE_V27:
-    type: annotation
-    format: bed
-    url: genome/hg38/igv/gencode.bed
-    indexURL: genome/hg38/igv/gencode.bed.idx
-    displayMode: &quot;EXPANDED&quot;
-    searchable: true
-    visibilityWindow: 300000000
-    height: 200'
-    for sample_id in $(head -n 50 data/scirep/sample_ids.txt);do
-        printf &quot;${sample_id}(+):
-    url: scirep/${sample_id}.transcriptome.+.bigWig
-    type: wig
-    format: bigwig
-    height: 25
-${sample_id}(-):
-    url: scirep/${sample_id}.transcriptome.-.bigWig
-    type: wig
-    format: bigwig
-    height: 25
-&quot;
-    done
-} &gt; genome_browser/config/scirep.yaml
-bin/create_igv.py -i templates/igv/main.html -g hg38 \
-    --tracklist genome_browser/config/scirep.yaml \
-    --base-url http://166.111.156.12:10080/genomebrowse \
-    -o genome_browser/igv/scirep.html
-sync-bigwig
+tracks:
+  GENCODE_V27:
+      name: GENCODE_V27
+      type: annotation
+      format: bed
+      url: genome/hg38/bed/gencode.bed
+      indexURL: genome/hg38/bed/gencode.bed.idx
+      displayMode: &quot;EXPANDED&quot;
+      searchable: true
+      visibilityWindow:  300000000
+      height: 100
+      show: true
+  long_RNA_gene:
+      name: long_RNA_gene
+      type: annotation
+      format: bed
+      url: genome/hg38/bed/long_RNA.gene.bed
+      indexURL: genome/hg38/bed/long_RNA.gene.bed.idx
+      displayMode: &quot;EXPANDED&quot;
+      searchable: true
+      visibilityWindow:  300000000
+      height: 100
+      show: true
 </code></pre>
 
-<pre><code class="bash">bin/create_igv.py -i templates/igv/main.html -g hg38 --genome-dir genome/hg38/ \
-    --track genome/hg38/bed/long_RNA.intron.bed \
-    --track genome/hg38/bed/rmsk.bed \
-    --track genome/hg38/bed/promoter.merged.bed \
-    --track genome/hg38/bed/enhancer.merged.bed \
-    --track output/scirep/bigwig/Sample_1S1.genome.+.bigWig \
-    --track output/scirep/bigwig/Sample_1S1.genome.-.bigWig \
-    -o igv.html
-
-bin/create_igv.py -i templates/igv/main.html -g hg38 --genome-dir genome/hg38/ \
-    --tracklist tmp/tracklist.yaml \
-    -o igv.html
---track output/scirep/bigwig/Sample_1S1.genome.+.bigWig -o igv.html
-
-</code></pre>
-
-<h2 id="reference-tracks">Reference tracks</h2>
-<pre><code class="bash">gtfToGenePred -geneNameAsName2 -genePredExt genome/hg38/gtf/gencode.gtf genome/hg38/genePred/gencode.genePredExt
-gffread -E --bed genome/hg38/gtf/gencode.gtf -o /dev/stdout | bedtools sort &gt; genome/hg38/igv/gencode.bed
-./tools/IGVTools/igvtools index genome/hg38/igv/gencode.bed
-</code></pre>
-
-<h2 id="domains">Domains</h2>
-<pre><code class="bash">gffread --bed -o genome/hg38/bed/long_RNA.bed genome/hg38/gtf/long_RNA.gtf
-gffread --bed -o genome/hg38/bed/gencode_tRNA.bed genome/hg38/gtf/gencode_tRNA.gtf
-
-[ -d &quot;output/scirep/gdomains/20/05.bed&quot; ] || mkdir -p output/scirep/gdomains/20
-{
-    bin/tbed2gbed &lt;(cat genome/hg38/bed/long_RNA.bed genome/hg38/bed/gencode_tRNA.bed) &lt;(grep -v '^chr' output/scirep/domains/20/05.bed) /dev/stdout
-    awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}/^chr/{print $0,0,0,0,1,$3-$2,0}' output/scirep/domains/20/05.bed
-} | bedtools sort &gt; output/scirep/gdomains/20/05.bed
-</code></pre>
-
-<h2 id="custom-reference-genome">Custom reference genome</h2>
-<ul>
-<li>IGV genome repository: (https://s3.amazonaws.com/igv.org.genomes/genomes.json)</li>
-<li>Cytoband schema: <a href="http://rohsdb.cmb.usc.edu/GBshape/cgi-bin/hgTables?db=hg19&amp;hgta_group=map&amp;hgta_track=cytoBand&amp;hgta_table=cytoBand&amp;hgta_doSchema=describe+table+schema">UCSC</a></li>
-</ul>
-<pre><code class="bash">genome=&quot;rRNA&quot;
-fastaURL=&quot;genome/hg38/fasta/${genome}.fa&quot;
-fastaIndexURL=&quot;genome/hg38/fasta/${genome}.fa.fai&quot;
-cytobandURL=&quot;genome/hg38/cytoband/${genome}.txt&quot;
-refURL=&quot;genome/hg38/genePred/${genome}.genePred&quot;
-# convert NR_ ids to rRNA names
-# gene_id|gene_name
-rRNAIdFile=&quot;genome/hg38/source/refSeq_rRNA.ids.txt&quot;
-
-awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}{print $1,0,$2,&quot;p&quot;NR&quot;.1&quot;,&quot;gneg&quot;}' &quot;$fastaIndexURL&quot; &gt; &quot;$cytobandURL&quot;
-bedToGenePred &lt;(awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}NR==FNR{split($0,a,&quot;|&quot;);name[a[1]]=a[2];next}{print $1,0,$2,name[$1],0,&quot;+&quot;}' &quot;$rRNAIdFile&quot; &quot;$fastaIndexURL&quot;) &quot;$refURL&quot;
-
-</code></pre>
-
-<pre><code class="bash">genome=&quot;circRNA&quot;
-fastaURL=&quot;genome/hg38/fasta/${genome}.fa&quot;
-fastaIndexURL=&quot;genome/hg38/fasta/${genome}.fa.fai&quot;
-cytobandURL=&quot;genome/hg38/cytoband/${genome}.txt&quot;
-refURL=&quot;genome/hg38/genePred/${genome}.genePred&quot;
-
-awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}{print $1,0,$2,&quot;p&quot;NR&quot;.1&quot;,&quot;gneg&quot;}' &quot;$fastaIndexURL&quot; &gt; &quot;$cytobandURL&quot;
-bedToGenePred &lt;(awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}{print $1,0,$2,$1,0,&quot;+&quot;}' &quot;$fastaIndexURL&quot;) &quot;$refURL&quot;
-</code></pre>
-
-<pre><code>    parser = subparsers.add_parser('create_reference', 
-        help='Create IGV reference genome from FASTA file')
-    parser.add_argument('--genome', type=str, help='genome name', required=True)
-    parser.add_argument('--name', type=str, help='reference name')
-    parser.add_argument('--fasta', type=str, required=True)
-    parser.add_argument('--gene-names', type=str,
-        help='Tab-separated file with 2 columns: gene_id, gene_name')
-    parser.add_argument('--gene-ids', type=str,
-        help='Only use gene ids in provided list file')
-    parser.add_argument('--output-dir', '-o', type=str, required=True,
-        help='output directory')
-</code></pre>
-
-<pre><code class="bash">tr '|' $'\t' &lt; &quot;genome/hg38/source/refSeq_rRNA.ids.txt&quot; &gt; genome/hg38/source/refSeq_rRNA.gene_names.txt
-cut -f1 genome/hg38/fasta/rRNA.fa.fai | head -n 10 &gt; tmp/gene_ids.txt
+<p>Two keys are required: <code>genome</code> and <code>reference</code>. The annotation tracks can be provided in BED, genePred, genePredExt, GTF or GFF format.</p>
+<h2 id="custom-reference-genome-from-fasta-file">Custom reference genome from FASTA file</h2>
+<h3 id="human-rrna">Human rRNA</h3>
+<pre><code class="bash"># map NR_* ids to gene names
+tr '|' $'\t' &lt; &quot;genome/hg38/source/refSeq_rRNA.ids.txt&quot; &gt; genome/hg38/source/refSeq_rRNA.gene_names.txt
+# create reference
 bin/create_igv.py create_reference --genome rRNA --name 'Human (rRNA)' \
     --gene-names genome/hg38/source/refSeq_rRNA.gene_names.txt \
-    --gene-ids tmp/gene_ids.txt \
     --fasta genome/hg38/fasta/rRNA.fa -o genome/hg38/igv/rRNA
-awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}NR&gt;1{split($1,a,&quot;|&quot;);c=0;for(i=2;i&lt;=NF;i++)c+=$i; print a[1],c/(NF-1)}' output/exorbase/count_matrix/circRNA.txt \
-    | awk '$2&gt;50' &gt; tmp/circRNA.txt
-bin/create_igv.py create_reference --genome circRNA --name 'Human (circRNA)' \
-    --gene-ids tmp/circRNA.txt \
-    --fasta genome/hg38/fasta/circRNA.fa -o genome/hg38/igv/circRNA
-map_step=circRNA
-dataset=exorbase
-base_url=&quot;http://166.111.156.12:10080/genomebrowse&quot;
+</code></pre>
+
+<p>The <code>create_reference</code> command generates a directory names <code>genome/hg38/igv/rRNA</code> that contains the following files:
+| Filename | Description |
+| -------- | ----------- |
+| <code>reference.fa</code> | Reference genome sequences |
+| <code>reference.fa.fai</code> | FASTA index for <code>reference.fa</code> |
+| <code>config.yaml</code> | Track configuration file for creating IGV web page |
+| <code>annotation.bed</code> | Annotation for each sequence in FASTA file |
+| <code>annotation.genePred</code> | Annotation in genePred format |
+| <code>cytoband.txt</code> | Cytoband file |</p>
+<h2 id="generate-igv-html">Generate IGV HTML</h2>
+<h3 id="configure-web-server">Configure web server</h3>
+<p>Setup a web server using Apache or other HTTP engines and set the base URL:</p>
+<pre><code class="bash">base_url=&quot;http://example.com/igv&quot;
+</code></pre>
+
+<p>The directory structure of IGV should be like:</p>
+<pre><code>/genome
+    hg38/
+        igv/
+        fasta/
+            genome.fa
+            genome.fai
+        bed/
+            gencode.bed
+            gencode.bed.idx
+            long_RNA.bed
+            long_RNA.bed.idx
+/genome_browser
+    config/
+        ${dataset}_${map_step}.yaml
+    igv/
+        ${dataset}_${map_step}.html
+
+</code></pre>
+
+<h3 id="transcriptomic-bigwig-files-small-rna">Transcriptomic BigWig files (small RNA)</h3>
+<pre><code class="bash">bin/create_igv.py generate_config \
+    --sample-classes data/${dataset}/sample_classes.txt \
+    --bigwig-pattern &quot;${dataset}/{sample_id}.transcriptome.{strand}.bigWig&quot; \
+    --base-url &quot;$base_url&quot; \
+    --max-samples-per-class 10 \
+    --reference &quot;templates/igv/config/genome.yaml&quot; \
+    -o genome_browser/config/${dataset}_transcriptome.yaml
+bin/create_igv.py render -i templates/igv/main.html \
+    -c genome_browser/config/${dataset}_transcriptome.yaml \
+    -o genome_browser/igv/${dataset}_transcriptome.html
+</code></pre>
+
+<h3 id="bigwig-files-on-custom-reference-genome-long-rna">BigWig files on custom reference genome (Long RNA)</h3>
+<pre><code class="bash">map_step=&quot;rRNA&quot;
 bin/create_igv.py generate_config --locus &quot;$locus&quot; \
     --sample-classes data/${dataset}/sample_classes.txt \
     --bigwig-pattern &quot;${dataset}/{sample_id}.${map_step}_rmdup.{strand}.bigWig&quot; \
@@ -459,10 +289,25 @@ bin/create_igv.py generate_config --locus &quot;$locus&quot; \
     --max-samples-per-class 10 \
     --reference &quot;genome/hg38/igv/${map_step}/config.yaml&quot; \
     -o genome_browser/config/${dataset}_${map_step}.yaml
-bin/create_igv.py render -i templates/igv/main.html \
-    -c genome_browser/config/${dataset}_${map_step}.yaml \
-    -o genome_browser/igv/${dataset}_${map_step}.html
 </code></pre>
+
+<h2 id="create-feature-database">Create feature database</h2>
+<p>Create a feature database for searching genomic locus with feature names from a list of annotation files:</p>
+<pre><code class="bash">[ -d &quot;igv/database&quot; ] || mkdir -p &quot;igv/database&quot;
+bin/web_server.py --build-database --genome hg38 \
+    -i genome/hg38/gtf/gencode.gtf \
+    -i genome/hg38/gtf/mitranscriptome_lncRNA.gtf \
+    -i genome/hg38/gtf/mitranscriptome_tucp.gtf \
+    -i genome/hg38/gff3/miRBase.gff3 \
+    -o igv/database/hg38.pkl
+</code></pre>
+
+<h2 id="start-web-server">Start web server</h2>
+<p>Start a web server that listens on port 5000</p>
+<pre><code class="bash">bin/web_server.py --host 0.0.0.0 --port 5000 -i igv/database/hg38.pkl
+</code></pre>
+
+<p>Then navigate to <code>http://&lt;server&gt;:5000/igv/${dataset}_genome.html</code> to visit the genome browser.</p>
               
             </div>
           </div>
