@@ -231,15 +231,41 @@ bin/create_igv.py create_reference --genome rRNA --name 'Human (rRNA)' \
     --fasta genome/hg38/fasta/rRNA.fa -o genome/hg38/igv/rRNA
 </code></pre>
 
-<p>The <code>create_reference</code> command generates a directory names <code>genome/hg38/igv/rRNA</code> that contains the following files:
-| Filename | Description |
-| -------- | ----------- |
-| <code>reference.fa</code> | Reference genome sequences |
-| <code>reference.fa.fai</code> | FASTA index for <code>reference.fa</code> |
-| <code>config.yaml</code> | Track configuration file for creating IGV web page |
-| <code>annotation.bed</code> | Annotation for each sequence in FASTA file |
-| <code>annotation.genePred</code> | Annotation in genePred format |
-| <code>cytoband.txt</code> | Cytoband file |</p>
+<p>The <code>create_reference</code> command generates a directory names <code>genome/hg38/igv/rRNA</code> that contains the following files:</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reference.fa</code></td>
+<td>Reference genome sequences</td>
+</tr>
+<tr>
+<td><code>reference.fa.fai</code></td>
+<td>FASTA index for <code>reference.fa</code></td>
+</tr>
+<tr>
+<td><code>config.yaml</code></td>
+<td>Track configuration file for creating IGV web page</td>
+</tr>
+<tr>
+<td><code>annotation.bed</code></td>
+<td>Annotation for each sequence in FASTA file</td>
+</tr>
+<tr>
+<td><code>annotation.genePred</code></td>
+<td>Annotation in genePred format</td>
+</tr>
+<tr>
+<td><code>cytoband.txt</code></td>
+<td>Cytoband file</td>
+</tr>
+</tbody>
+</table>
 <h2 id="generate-igv-html">Generate IGV HTML</h2>
 <h3 id="configure-web-server">Configure web server</h3>
 <p>Setup a web server using Apache or other HTTP engines and set the base URL:</p>
@@ -258,10 +284,10 @@ bin/create_igv.py create_reference --genome rRNA --name 'Human (rRNA)' \
             gencode.bed.idx
             long_RNA.bed
             long_RNA.bed.idx
-/genome_browser
+/igv
     config/
         ${dataset}_${map_step}.yaml
-    igv/
+    html/
         ${dataset}_${map_step}.html
 
 </code></pre>
