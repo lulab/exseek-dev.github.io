@@ -138,6 +138,8 @@
         
             <li><a class="toctree-l3" href="#when-bugs-appear">When bugs appear:</a></li>
         
+            <li><a class="toctree-l3" href="#why-did-some-jobs-occasionally-fail-with-no-extra-error-message-except-calledprocesserror">Why did some jobs occasionally fail with no extra error message except 'CalledProcessError'?</a></li>
+        
         </ul>
     
 
@@ -213,6 +215,14 @@ sequencing_type = 'short'
 <h2 id="when-bugs-appear">When bugs appear:</h2>
 <p>The quickest way is to create a <a href="https://github.com/lulab/exSeek/issues">new issue</a> </p>
 <p>If you want us to add more functions in exseek, please create a <a href="https://github.com/lulab/exSeek/issues">new issue</a></p>
+<h2 id="why-did-some-jobs-occasionally-fail-with-no-extra-error-message-except-calledprocesserror">Why did some jobs occasionally fail with no extra error message except 'CalledProcessError'?</h2>
+<p>The most possible cause is no available memory. You can confirm the problem by running the linux command <code>dmesg</code> or open
+and examine the most recent message. Message like "Out of memory: Kill process ** or sacrifice child" clearly indicates that memory problem occurred.
+Some jobs (e.g. mapping using STAR, samtools sort, bedtools sort)requires large amount memory especially
+ when the input number of reads is large. Try to reduce the number of parallels
+with the <code>-j</code> option or set memory limit in <code>config/cluster.yaml</code> for a particular job if you run the jobs on a
+computer cluster. </p>
+<h2 id="_1"></h2>
               
             </div>
           </div>
