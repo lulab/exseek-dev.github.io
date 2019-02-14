@@ -134,11 +134,17 @@
         
             <li><a class="toctree-l3" href="#how-to-use-exseek">How to use exSeek</a></li>
         
+            <li><a class="toctree-l3" href="#what-is-snakemake">What is Snakemake</a></li>
+        
+            <li><a class="toctree-l3" href="#how-to-set-configurations-in-config-file">How to set configurations in config file</a></li>
+        
             <li><a class="toctree-l3" href="#how-to-generate-report">How to generate report</a></li>
         
             <li><a class="toctree-l3" href="#when-bugs-appear">When bugs appear:</a></li>
         
             <li><a class="toctree-l3" href="#why-did-some-jobs-occasionally-fail-with-no-extra-error-message-except-calledprocesserror">Why did some jobs occasionally fail with no extra error message except 'CalledProcessError'?</a></li>
+        
+            <li><a class="toctree-l3" href="#how-to-rerun-downstream-steps-from-a-specific-step-in-a-pipeline">How to rerun downstream steps from a specific step in a pipeline</a></li>
         
         </ul>
     
@@ -198,9 +204,9 @@
 <pre><code>${exseek_path}/bin/exseek.py quality_control --dataset ${dataset}
 </code></pre>
 
-<h3 id="what-is-snakemake">What is Snakemake</h3>
+<h2 id="what-is-snakemake">What is Snakemake</h2>
 <p>The <a href="https://snakemake.readthedocs.io/en/stable/">Snakemake</a> workflow management system is a tool to create reproducible and scalable data analyses. We have hide the details of snakemake and you only need to run one single command. However you can customize some of the codes if you are familiar with snakemake.</p>
-<h3 id="how-to-set-configurations-in-config-file">How to set configurations in config file</h3>
+<h2 id="how-to-set-configurations-in-config-file">How to set configurations in config file</h2>
 <p>There are many parameters to be specified. You should make a new copy of config file in config directory. For example you can nake one copy of scirep.yaml. Then rename the file to config/${dataset}.yaml. </p>
 <p>Other parameters are defined in snakemake/default_config.yaml. You may also change parameters. </p>
 <h2 id="how-to-generate-report">How to generate report</h2>
@@ -222,7 +228,13 @@ Some jobs (e.g. mapping using STAR, samtools sort, bedtools sort)requires large 
  when the input number of reads is large. Try to reduce the number of parallels
 with the <code>-j</code> option or set memory limit in <code>config/cluster.yaml</code> for a particular job if you run the jobs on a
 computer cluster. </p>
-<h2 id="_1"></h2>
+<h2 id="how-to-rerun-downstream-steps-from-a-specific-step-in-a-pipeline">How to rerun downstream steps from a specific step in a pipeline</h2>
+<p>Sometimes we need to rerun a pipeline from a step, usually after changing the configuration file.
+Snakemake is not aware of changes in configuration file and we need to rerun the pipeline by ourselves.
+The <code>--forcerun</code> option in snakemake allows rerunning a step and all steps that depend on the output files
+of the step. For example, to rerun the <code>count_matrix</code> step, just run:</p>
+<pre><code class="bash">exseek.py count_matrix -d $dataset --forcerun count_matrix
+</code></pre>
               
             </div>
           </div>

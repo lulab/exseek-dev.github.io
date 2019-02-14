@@ -322,6 +322,8 @@ bin/create_igv.py generate_config --locus &quot;$locus&quot; \
 <pre><code class="bash">[ -d &quot;igv/database&quot; ] || mkdir -p &quot;igv/database&quot;
 bin/web_server.py --build-database --genome hg38 \
     -i genome/hg38/gtf/gencode.gtf \
+    -i genome/hg38/gtf/gencode_tRNA.gtf \
+    -i genome/hg38/gff3/refseq.gff3 \
     -i genome/hg38/gtf/mitranscriptome_lncRNA.gtf \
     -i genome/hg38/gtf/mitranscriptome_tucp.gtf \
     -i genome/hg38/gff3/miRBase.gff3 \
