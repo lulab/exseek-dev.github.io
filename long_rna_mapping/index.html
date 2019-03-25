@@ -78,6 +78,27 @@
     <a class="current" href="./">Long RNA-seq mapping</a>
     <ul class="subnav">
             
+    <li class="toctree-l2"><a href="#input-data-files">Input data files</a></li>
+    
+
+    <li class="toctree-l2"><a href="#quality-control-before-adapter-removal">Quality control (before adapter removal)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#remove-adapter">Remove adapter</a></li>
+    
+
+    <li class="toctree-l2"><a href="#start-with-clean-reads">Start with clean reads</a></li>
+    
+
+    <li class="toctree-l2"><a href="#quality-control-after-adapter-removal">Quality control (after adapter removal)</a></li>
+    
+
+    <li class="toctree-l2"><a href="#mapping">Mapping</a></li>
+    
+
+    <li class="toctree-l2"><a href="#count-matrix">Count matrix</a></li>
+    
+
     </ul>
 	    </li>
           
@@ -164,7 +185,71 @@
           <div role="main">
             <div class="section">
               
-                
+                <h3 id="input-data-files">Input data files</h3>
+<table>
+<thead>
+<tr>
+<th>File name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${input_dir}/fastq/${sample_id}.fastq</code></td>
+<td>Read files (single-end sequencing)</td>
+</tr>
+<tr>
+<td><code>${input_dir}/fastq/${sample_id}_1.fastq</code>, <code>${input_dir}/fastq/${sample_id}_2.fastq</code></td>
+<td>Read files (paired-end sequencing)</td>
+</tr>
+<tr>
+<td><code>${input_dir}/sample_ids.txt</code></td>
+<td>A text file with one sample ID per line.</td>
+</tr>
+<tr>
+<td><code>${input_dir}/sample_classes.txt</code></td>
+<td>A tab-deliminated file (with header) with two columns: sample_id, label (optional)</td>
+</tr>
+<tr>
+<td><code>${input_dir}/batch_info.txt</code></td>
+<td>A comma-deliminated file (with header) with at least two columns: sample_id, batch1, batch2, ... (optional)</td>
+</tr>
+<tr>
+<td><code>${input_dir}/compare_groups.yaml</code></td>
+<td>A YAML file defining positive and negative classes. (optional)</td>
+</tr>
+<tr>
+<td><code>${config_dir}/${dataset}.yaml</code></td>
+<td>A YAML file for configuration parameters for the dataset</td>
+</tr>
+</tbody>
+</table>
+<p>Example config file: <code>config/long_pe_example.yaml</code></p>
+<h2 id="quality-control-before-adapter-removal">Quality control (before adapter removal)</h2>
+<pre><code class="bash">exseek.py quality_control -d ${dataset}
+</code></pre>
+
+<h2 id="remove-adapter">Remove adapter</h2>
+<pre><code class="bash">exseek.py cutadapt -d ${dataset}
+</code></pre>
+
+<h2 id="start-with-clean-reads">Start with clean reads</h2>
+<pre><code class="bash">mkdir -p ${output_dir}/cutadapt
+ln -f -s ${fastq_dir}/*.fastq.gz ${output_dir}/cutadapt
+exseek.py cutadapt -d ${dataset}
+</code></pre>
+
+<h2 id="quality-control-after-adapter-removal">Quality control (after adapter removal)</h2>
+<pre><code class="bash">exseek.py quality_control_clean -d ${dataset}
+</code></pre>
+
+<h2 id="mapping">Mapping</h2>
+<pre><code class="bash">exseek.py mapping -d ${dataset}
+</code></pre>
+
+<h2 id="count-matrix">Count matrix</h2>
+<pre><code class="bash">exseek.py count_matrix -d ${dataset}
+</code></pre>
               
             </div>
           </div>

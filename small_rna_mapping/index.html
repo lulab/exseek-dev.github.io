@@ -73,6 +73,35 @@
     <a class="current" href="./">Small RNA-seq mapping</a>
     <ul class="subnav">
             
+    <li class="toctree-l2"><a href="#small-rna-mapping">Small RNA mapping</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#create-spikein-directory">Create spikein directory</a></li>
+        
+            <li><a class="toctree-l3" href="#update-sequential-mapping-order">Update sequential mapping order</a></li>
+        
+            <li><a class="toctree-l3" href="#add-new-reference-sequence">Add new reference sequence</a></li>
+        
+            <li><a class="toctree-l3" href="#quality-control-before-adapter-removal">Quality control (before adapter removal)</a></li>
+        
+            <li><a class="toctree-l3" href="#remove-adapter">Remove adapter</a></li>
+        
+            <li><a class="toctree-l3" href="#start-clean-reads">Start clean reads</a></li>
+        
+            <li><a class="toctree-l3" href="#quality-control-after-adapter-removal">Quality control (after adapter removal)</a></li>
+        
+            <li><a class="toctree-l3" href="#mapping">Mapping</a></li>
+        
+            <li><a class="toctree-l3" href="#call-domains">Call domains</a></li>
+        
+            <li><a class="toctree-l3" href="#count-matrix">Count matrix</a></li>
+        
+            <li><a class="toctree-l3" href="#combine-domains-with-small-rna">Combine domains with small RNA</a></li>
+        
+        </ul>
+    
+
     </ul>
 	    </li>
           
@@ -164,7 +193,87 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="small-rna-mapping">Small RNA mapping</h1>
+<h2 id="create-spikein-directory">Create spikein directory</h2>
+<pre><code class="bash"># output spike-in directory
+spikein_dir=&quot;data/${dataset}/spikein&quot;
+# input spike-in sequences
+spikein_fa=&quot;data/${dataset}/spikein.fa&quot;
+# create sub-directories
+mkdir -p &quot;$spikein_dir&quot;
+for sub_dir in fasta bed chrom_sizes transcript_table index/bowtie2;do
+    mkdir -p &quot;$spikein_dir/$sub_dir&quot;
+done
+# create files
+cp &quot;$spikein_fa&quot; &quot;$spikein_dir/fasta/spikein.fa&quot;
+samtools faidx &quot;$spikein_dir/fasta/spikein.fa&quot;
+cut -f1,2 &quot;$spikein_dir/fasta/spikein.fa.fai&quot; &gt; &quot;$spikein_dir/chrom_sizes/spikein&quot;
+{
+    echo -e 'chrom\tstart\tend\tname\tscore\tstrand\tgene_id\ttranscript_id\tgene_name\ttranscript_name\tgene_type\ttranscript_type\tsource'
+    awk 'BEGIN{OFS=&quot;\t&quot;;FS=&quot;\t&quot;}{print $1,0,$2,$1,0,&quot;+&quot;,$1,$1,$1,$1,&quot;spikein&quot;,&quot;spikein&quot;,&quot;spikein&quot;}' &quot;$spikein_dir/fasta/spikein.fa.fai&quot;
+} &gt; &quot;$spikein_dir/transcript_table/spikein.txt&quot;
+bowtie2-build &quot;$spikein_dir/fasta/spikein.fa&quot; &quot;$spikein_dir/index/bowtie2/spikein&quot;
+</code></pre>
+
+<h2 id="update-sequential-mapping-order">Update sequential mapping order</h2>
+<p>The default mapping order is set as <code>rna_type</code> variable in <code>snakemake/default_config.yaml</code>:</p>
+<pre><code class="yaml">rna_types: [rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA, 
+  snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
+</code></pre>
+
+<p>You can change the mapping order by add a <code>rna_type</code> variable in <code>config/${dataset}.yaml</code>. 
+For example, add spike-in sequences as the first RNA type:</p>
+<pre><code class="yaml">rna_types: [spikein, rRNA, lncRNA, miRNA, mRNA, piRNA, snoRNA, 
+  snRNA, srpRNA, tRNA, tucpRNA, Y_RNA]
+</code></pre>
+
+<pre><code class="bash">exseek.py update_sequential_mapping -d ${dataset}
+</code></pre>
+
+<h2 id="add-new-reference-sequence">Add new reference sequence</h2>
+<p>If a new RNA type is added, you should also add a sequence file in FASTA format: <code>${genome_dir}/fasta/${rna_type}.fa</code>.
+Then build a FASTA index (<code>${genome_dir}/fasta/${rna_type}.fa.fai</code>):</p>
+<pre><code class="bash">samtools faidx ${genome_dir}/fasta/${rna_type}.fa
+</code></pre>
+
+<p>Then build a bowtie2 index (<code>${genome_dir}/index/bowtie2/${rna_type}</code>):</p>
+<pre><code class="bash">bowtie2-build ${genome_dir}/fasta/${rna_type}.fa ${genome_dir}/index/bowtie2/${rna_type}
+</code></pre>
+
+<h2 id="quality-control-before-adapter-removal">Quality control (before adapter removal)</h2>
+<pre><code class="bash">exseek.py quality_control -d ${dataset}
+</code></pre>
+
+<h2 id="remove-adapter">Remove adapter</h2>
+<pre><code class="bash">exseek.py cutadapt -d ${dataset}
+</code></pre>
+
+<h2 id="start-clean-reads">Start clean reads</h2>
+<pre><code class="bash">mkdir -p ${output_dir}/cutadapt
+ln -f -s ${fastq_dir}/*.fastq.gz ${output_dir}/cutadapt
+# convert to fasta
+exseek.py fastq_to_fasta -d ${dataset}
+</code></pre>
+
+<h2 id="quality-control-after-adapter-removal">Quality control (after adapter removal)</h2>
+<pre><code class="bash">exseek.py quality_control_clean -d ${dataset}
+</code></pre>
+
+<h2 id="mapping">Mapping</h2>
+<pre><code class="bash">exseek.py mapping -d ${dataset}
+</code></pre>
+
+<h2 id="call-domains">Call domains</h2>
+<pre><code class="bash">exseek.py call_domains -d ${dataset}
+</code></pre>
+
+<h2 id="count-matrix">Count matrix</h2>
+<pre><code class="bash">exseek.py count_matrix -d ${dataset}
+</code></pre>
+
+<h2 id="combine-domains-with-small-rna">Combine domains with small RNA</h2>
+<pre><code class="bash">exseek.py combine_domains -d ${dataset}
+</code></pre>
               
             </div>
           </div>
